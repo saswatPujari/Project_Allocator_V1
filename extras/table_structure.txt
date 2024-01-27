@@ -1,0 +1,79 @@
+
+
+mysql> SHOW TABLES FROM PROJECT;
++-------------------+
+| Tables_in_PROJECT |
++-------------------+
+| ADDRESS           |
+| ASSIGNMENT        |
+| DEVICE            |
+| PROJECT           |
+| USER              |
++-------------------+
+
+mysql> DESCRIBE ADDRESS;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ID       | int         | NO   | PRI | NULL    |       |
+| STREET   | varchar(50) | YES  |     | NULL    |       |
+| CITY     | varchar(50) | YES  |     | NULL    |       |
+| STATE    | varchar(50) | YES  |     | NULL    |       |
+| COUNTRY  | varchar(50) | YES  |     | NULL    |       |
+| ZIP_CODE | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+mysql> DESCRIBE ASSIGNMENT;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| ID          | int           | NO   | PRI | NULL    |       |
+| PROJECT_ID  | int           | YES  | MUL | NULL    |       |
+| USER_ID     | int           | YES  | MUL | NULL    |       |
+| DEVICE_ID   | int           | YES  | MUL | NULL    |       |
+| START_DATE  | date          | YES  |     | NULL    |       |
+| FINISH_DATE | date          | YES  |     | NULL    |       |
+| COST        | decimal(10,2) | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+
+mysql> DESCRIBE DEVICE;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| ID          | int           | NO   | PRI | NULL    |       |
+| DEVICE_NAME | varchar(20)   | YES  |     | NULL    |       |
+| TYPE        | varchar(20)   | YES  |     | NULL    |       |
+| COST        | decimal(10,2) | YES  |     | NULL    |       |
+| QUANTITY    | int           | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+
+mysql> DESCRIBE PROJECT;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| ID           | int         | NO   | PRI | NULL    |       |
+| PROJECT_NAME | varchar(20) | YES  |     | NULL    |       |
+| TYPE         | varchar(20) | YES  |     | NULL    |       |
+| STATUS       | varchar(20) | YES  |     | NULL    |       |
+| START_DATE   | date        | YES  |     | NULL    |       |
+| END_DATE     | date        | YES  |     | NULL    |       |
+| ADDRESS_ID   | int         | YES  | MUL | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+mysql> DESCRIBE USER;
++------------+---------------+------+-----+---------+-------+
+| Field      | Type          | Null | Key | Default | Extra |
++------------+---------------+------+-----+---------+-------+
+| ID         | int           | NO   | PRI | NULL    |       |
+| USER_NAME  | varchar(20)   | YES  |     | NULL    |       |
+| EMAIL      | varchar(20)   | YES  |     | NULL    |       |
+| PHONE      | int           | YES  |     | NULL    |       |
+| JOB        | varchar(20)   | YES  |     | NULL    |       |
+| STATUS     | char(25)      | YES  |     | NULL    |       |
+| COST       | decimal(10,2) | YES  |     | NULL    |       |
+| ADDRESS_ID | int           | YES  | MUL | NULL    |       |
++------------+---------------+------+-----+---------+-------+
+
+
+
+Each Project or User can be associated with only one Address, but an Address can be associated with multiple Project or User entities.

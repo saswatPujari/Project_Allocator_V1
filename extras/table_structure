@@ -1,0 +1,103 @@
+
+
+THE SCHEMA : 
+
+mysql> SHOW TABLES;
++-------------------+
+| Tables_in_PROJECT |
++-------------------+
+| ACTIVITY          |
+| ADDRESS           |
+| ASSIGNMENT        |
+| DEVICE            |
+| PROJECT           |
+| USER              |
++-------------------+
+6 rows in set (0.01 sec)
+
+THE TABLE STRUCTURES : 
+
+mysql> DESCRIBE ACTIVITY;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| ID            | int          | NO   | PRI | NULL    | auto_increment |
+| ACTIVITY_NAME | varchar(255) | YES  |     | NULL    |                |
+| DESCRIPTION   | varchar(255) | YES  |     | NULL    |                |
+| END_DATE      | datetime(6)  | YES  |     | NULL    |                |
+| START_DATE    | datetime(6)  | YES  |     | NULL    |                |
+| STATUS        | varchar(255) | YES  |     | NULL    |                |
+| TYPE          | varchar(255) | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> DESCRIBE ADDRESS;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| ID       | bigint       | NO   | PRI | NULL    | auto_increment |
+| CITY     | varchar(255) | YES  |     | NULL    |                |
+| COUNTRY  | varchar(255) | YES  |     | NULL    |                |
+| STATE    | varchar(255) | YES  |     | NULL    |                |
+| STREET   | varchar(255) | YES  |     | NULL    |                |
+| ZIP_CODE | varchar(255) | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> DESCRIBE DEVICE;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| ID          | int          | NO   | PRI | NULL    | auto_increment |
+| COST        | double       | YES  |     | NULL    |                |
+| DEVICE_NAME | varchar(255) | YES  |     | NULL    |                |
+| QUANTITY    | int          | YES  |     | NULL    |                |
+| TYPE        | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> DESCRIBE PROJECT;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| ID           | int          | NO   | PRI | NULL    | auto_increment |
+| DESCRIPTION  | varchar(255) | YES  |     | NULL    |                |
+| END_DATE     | datetime(6)  | YES  |     | NULL    |                |
+| PROJECT_NAME | varchar(255) | YES  |     | NULL    |                |
+| START_DATE   | datetime(6)  | YES  |     | NULL    |                |
+| STATUS       | varchar(255) | YES  |     | NULL    |                |
+| TYPE         | varchar(255) | YES  |     | NULL    |                |
+| ADDRESS_ID   | bigint       | YES  | MUL | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> DESCRIBE USER;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| ID           | int          | NO   | PRI | NULL    | auto_increment |
+| AVAILABILITY | varchar(255) | YES  |     | NULL    |                |
+| COST         | double       | YES  |     | NULL    |                |
+| EMAIL        | varchar(255) | YES  |     | NULL    |                |
+| JOB          | varchar(255) | YES  |     | NULL    |                |
+| PHONE        | varchar(255) | YES  |     | NULL    |                |
+| USER_NAME    | varchar(255) | YES  |     | NULL    |                |
+| ADDRESS_ID   | bigint       | YES  | MUL | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> DESCRIBE ASSIGNMENTS;
+ERROR 1146 (42S02): Table 'PROJECT.ASSIGNMENTS' doesn't exist
+mysql> DESCRIBE ASSIGNMENT;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| ID          | bigint      | NO   | PRI | NULL    | auto_increment |
+| COST        | double      | YES  |     | NULL    |                |
+| FINISH_DATE | datetime(6) | YES  |     | NULL    |                |
+| START_DATE  | datetime(6) | YES  |     | NULL    |                |
+| ACTIVITY_ID | int         | YES  | MUL | NULL    |                |
+| DEVICE_ID   | int         | YES  | MUL | NULL    |                |
+| PROJECT_ID  | int         | YES  | MUL | NULL    |                |
+| USER_ID     | int         | YES  | MUL | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+

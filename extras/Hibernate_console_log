@@ -1,0 +1,202 @@
+Jan 27, 2024 10:26:55 AM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH000204: Processing PersistenceUnitInfo [name: ProjectAllocatorPU]
+Jan 27, 2024 10:26:55 AM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate ORM core version 5.6.4.Final
+Jan 27, 2024 10:26:55 AM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+INFO: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+Jan 27, 2024 10:26:55 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+Jan 27, 2024 10:26:55 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/PROJECT]
+Jan 27, 2024 10:26:55 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=pujari}
+Jan 27, 2024 10:26:55 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Jan 27, 2024 10:26:55 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
+Jan 27, 2024 10:26:55 AM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+Jan 27, 2024 10:26:56 AM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4cb702ce] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+Hibernate: 
+    
+    create table ACTIVITY (
+       ID integer not null auto_increment,
+        ACTIVITY_NAME varchar(255),
+        DESCRIPTION varchar(255),
+        END_DATE datetime(6),
+        START_DATE datetime(6),
+        STATUS varchar(255),
+        TYPE varchar(255),
+        primary key (ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table ADDRESS (
+       ID bigint not null auto_increment,
+        CITY varchar(255),
+        COUNTRY varchar(255),
+        STATE varchar(255),
+        STREET varchar(255),
+        ZIP_CODE varchar(255),
+        primary key (ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table ASSIGNMENT (
+       ID bigint not null auto_increment,
+        COST double precision,
+        FINISH_DATE datetime(6),
+        START_DATE datetime(6),
+        ACTIVITY_ID integer,
+        DEVICE_ID integer,
+        PROJECT_ID integer,
+        USER_ID integer,
+        primary key (ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table DEVICE (
+       ID integer not null auto_increment,
+        COST double precision,
+        DEVICE_NAME varchar(255),
+        QUANTITY integer,
+        TYPE varchar(255),
+        primary key (ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table PROJECT (
+       ID integer not null auto_increment,
+        DESCRIPTION varchar(255),
+        END_DATE datetime(6),
+        PROJECT_NAME varchar(255),
+        START_DATE datetime(6),
+        STATUS varchar(255),
+        TYPE varchar(255),
+        ADDRESS_ID bigint,
+        primary key (ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table USER (
+       ID integer not null auto_increment,
+        AVAILABILITY varchar(255),
+        COST double precision,
+        EMAIL varchar(255),
+        JOB varchar(255),
+        PHONE varchar(255),
+        USER_NAME varchar(255),
+        ADDRESS_ID bigint,
+        primary key (ID)
+    ) engine=InnoDB
+Hibernate: 
+    
+    alter table ASSIGNMENT 
+       add constraint FKigvfejfkl3cvwdvo9n5uqyaxs 
+       foreign key (ACTIVITY_ID) 
+       references ACTIVITY (ID)
+Hibernate: 
+    
+    alter table ASSIGNMENT 
+       add constraint FK3blhg00gni8tt0vyyutod4y8c 
+       foreign key (DEVICE_ID) 
+       references DEVICE (ID)
+Hibernate: 
+    
+    alter table ASSIGNMENT 
+       add constraint FKk0g0cvk4fwpqmm3632dep8uke 
+       foreign key (PROJECT_ID) 
+       references PROJECT (ID)
+Hibernate: 
+    
+    alter table ASSIGNMENT 
+       add constraint FKlqbm8cyqp26tq6ym0r9u67hal 
+       foreign key (USER_ID) 
+       references USER (ID)
+Hibernate: 
+    
+    alter table PROJECT 
+       add constraint FKh1kvi70703mvjx5xxd6aum3b5 
+       foreign key (ADDRESS_ID) 
+       references ADDRESS (ID)
+Hibernate: 
+    
+    alter table USER 
+       add constraint FKr533k838tt8i8uv7lxi1e6p55 
+       foreign key (ADDRESS_ID) 
+       references ADDRESS (ID)
+Jan 27, 2024 10:26:56 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Details of Address table:
+Hibernate: 
+    select
+        address0_.ID as id1_1_,
+        address0_.CITY as city2_1_,
+        address0_.COUNTRY as country3_1_,
+        address0_.STATE as state4_1_,
+        address0_.STREET as street5_1_,
+        address0_.ZIP_CODE as zip_code6_1_ 
+    from
+        ADDRESS address0_
+******** PRINTING ADDRESS : BEGIN ********
+******** PRINTING ADDRESS : END ********
+Details of Device table:
+Hibernate: 
+    select
+        device0_.ID as id1_3_,
+        device0_.COST as cost2_3_,
+        device0_.DEVICE_NAME as device_n3_3_,
+        device0_.QUANTITY as quantity4_3_,
+        device0_.TYPE as type5_3_ 
+    from
+        DEVICE device0_
+******** PRINTING DEVICE : BEGIN ********
+******** PRINTING DEVICE : END ********
+Details of USER table:
+Hibernate: 
+    select
+        user0_.ID as id1_5_,
+        user0_.ADDRESS_ID as address_8_5_,
+        user0_.AVAILABILITY as availabi2_5_,
+        user0_.COST as cost3_5_,
+        user0_.EMAIL as email4_5_,
+        user0_.JOB as job5_5_,
+        user0_.PHONE as phone6_5_,
+        user0_.USER_NAME as user_nam7_5_ 
+    from
+        USER user0_
+******** PRINTING USER : BEGIN ********
+******** PRINTING USER : END ********
+Details of Project table:
+Hibernate: 
+    select
+        project0_.ID as id1_4_,
+        project0_.ADDRESS_ID as address_8_4_,
+        project0_.DESCRIPTION as descript2_4_,
+        project0_.END_DATE as end_date3_4_,
+        project0_.PROJECT_NAME as project_4_4_,
+        project0_.START_DATE as start_da5_4_,
+        project0_.STATUS as status6_4_,
+        project0_.TYPE as type7_4_ 
+    from
+        PROJECT project0_
+******** PRINTING PROJECT : BEGIN ********
+******** PRINTING PROEJCT : END ********
+Details of Assignment table:
+Hibernate: 
+    select
+        assignment0_.ID as id1_2_,
+        assignment0_.ACTIVITY_ID as activity5_2_,
+        assignment0_.COST as cost2_2_,
+        assignment0_.DEVICE_ID as device_i6_2_,
+        assignment0_.FINISH_DATE as finish_d3_2_,
+        assignment0_.PROJECT_ID as project_7_2_,
+        assignment0_.START_DATE as start_da4_2_,
+        assignment0_.USER_ID as user_id8_2_ 
+    from
+        ASSIGNMENT assignment0_
+******** PRINTING ASSIGNMENTS : BEGIN ********
+******** PRINTING ASSIGNMENTS : END ********
+Jan 27, 2024 10:26:56 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState stop
+INFO: HHH10001008: Cleaning up connection pool [jdbc:mysql://localhost:3306/PROJECT]

@@ -1,0 +1,97 @@
+
+my address table is described as below.
+you will have to write INSERT QUERIES with dummy data for ten records. pick country as INDIA and choose ten different addresses.
+
+mysql> DESCRIBE ADDRESS;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ID       | int         | NO   | PRI | NULL    |       |
+| STREET   | varchar(50) | YES  |     | NULL    |       |
+| CITY     | varchar(50) | YES  |     | NULL    |       |
+| STATE    | varchar(50) | YES  |     | NULL    |       |
+| COUNTRY  | varchar(50) | YES  |     | NULL    |       |
+| ZIP_CODE | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+
+my device table is described as below.
+you will have to write INSERT QUERIES with dummy data for twenty records.
+you can pick devices like laptop, mic, softbox, camera, go pro, video recorder, tripod stand etc.
+give ten quantity to each device. 
+
+mysql> DESCRIBE DEVICE;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| ID          | int           | NO   | PRI | NULL    |       |
+| DEVICE_NAME | varchar(20)   | YES  |     | NULL    |       |
+| TYPE        | varchar(20)   | YES  |     | NULL    |       |
+| COST        | decimal(10,2) | YES  |     | NULL    |       |
+| QUANTITY    | int           | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+
+my Project table is described as below.
+you will have to write INSERT QUERIES with dummy data for thirty records.
+project type can have values - SHORT FILM, ADVERTISEMENT, EDUCATIONAL VIDEO, VIDEO SHORTS, NEWS SHORTS
+project status can have values - NOT STARTED, IN PROGRESS, COMPLETED
+you can choose addressID from the table you have created above.
+
+mysql> DESCRIBE PROJECT;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| ID           | int         | NO   | PRI | NULL    |       |
+| PROJECT_NAME | varchar(20) | YES  |     | NULL    |       |
+| TYPE         | varchar(20) | YES  |     | NULL    |       |
+| STATUS       | varchar(20) | YES  |     | NULL    |       |
+| START_DATE   | date        | YES  |     | NULL    |       |
+| END_DATE     | date        | YES  |     | NULL    |       |
+| ADDRESS_ID   | int         | YES  | MUL | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+my USER table is described as below.
+you will have to write INSERT QUERIES with dummy data for fifteen records.
+job can have values - PHOTOGRAPHER,VIDEO EDITOR, CONTENT WRITER, ANCHOR, BLOGGER, PROJECT MANAGER, ACCOUNTING
+status can have values - OCCUPIED and NOT OCCUPIED
+you can choose addressID from the table you have created above.
+
+mysql> DESCRIBE USER;
++------------+---------------+------+-----+---------+-------+
+| Field      | Type          | Null | Key | Default | Extra |
++------------+---------------+------+-----+---------+-------+
+| ID         | int           | NO   | PRI | NULL    |       |
+| USER_NAME  | varchar(20)   | YES  |     | NULL    |       |
+| EMAIL      | varchar(20)   | YES  |     | NULL    |       |
+| PHONE      | int           | YES  |     | NULL    |       |
+| JOB        | varchar(20)   | YES  |     | NULL    |       |
+| STATUS     | char(25)      | YES  |     | NULL    |       |
+| COST       | decimal(10,2) | YES  |     | NULL    |       |
+| ADDRESS_ID | int           | YES  | MUL | NULL    |       |
++------------+---------------+------+-----+---------+-------+
+
+
+my ASSIGNMENT table is described as below.
+you will have to write INSERT QUERIES with dummy data for 50 records.
+you have to choose projectID, userId, deviceId from the INSERT Queries above. 
+you can mix them randomly but make sure that there are below data available
+
+a) photographers will have camera, softbox, tripod stand, go pro, video recorder assigned
+b) content writers will have laptop, hard drive, monitor assigned
+c) video editors will have laptop assigned
+d) anchors will have mic, go pro, video recorder, hard drive assigned
+e) managers and accountants will have laptops
+
+mysql> DESCRIBE ASSIGNMENT;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| ID          | int           | NO   | PRI | NULL    |       |
+| PROJECT_ID  | int           | YES  | MUL | NULL    |       |
+| USER_ID     | int           | YES  | MUL | NULL    |       |
+| DEVICE_ID   | int           | YES  | MUL | NULL    |       |
+| START_DATE  | date          | YES  |     | NULL    |       |
+| FINISH_DATE | date          | YES  |     | NULL    |       |
+| COST        | decimal(10,2) | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
