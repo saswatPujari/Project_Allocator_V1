@@ -1,39 +1,28 @@
 package com.crudapp.respository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-
 import com.crudapp.entity.Address;
-
 import java.util.List;
 
-public class AddressRepository {
+public class AddressRepository extends BaseRepository{
     
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    @Transactional
     public void save(Address address) {
-        entityManager.persist(address);
+    	getEntityManager().persist(address);
     }
 
     public Address findById(Long id) {
-        return entityManager.find(Address.class, id);
+        return getEntityManager().find(Address.class, id);
     }
 
-    @Transactional
     public void update(Address address) {
-        entityManager.merge(address);
+    	getEntityManager().merge(address);
     }
 
-    @Transactional
     public void delete(Address address) {
-        entityManager.remove(address);
+    	getEntityManager().remove(address);
     }
 
     public List<Address> findAll() {
-        return entityManager.createQuery("SELECT a FROM Address a", Address.class).getResultList();
+        return getEntityManager().createQuery("SELECT a FROM Address a", Address.class).getResultList();
     }
 }
 
